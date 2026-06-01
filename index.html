@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgriHub — Secure Node Access</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient canvas background -->
+  <canvas id="bioCanvas"></canvas>
+
+  <!-- Scanline overlay -->
+  <div class="scanlines"></div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--            LOGIN VIEW                   -->
+  <!-- ═══════════════════════════════════════ -->
+  <div id="loginView" class="view active">
+    <div class="card login-card">
+
+      <!-- Header -->
+      <div class="card-header">
+        <div class="logo-wrap">
+          <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="22" stroke="var(--accent-emerald)" stroke-width="1.5" opacity="0.4"/>
+            <path d="M24 8 C24 8 14 20 14 28 C14 34.627 18.477 40 24 40 C29.523 40 34 34.627 34 28 C34 20 24 8 24 8Z"
+                  fill="none" stroke="var(--accent-emerald)" stroke-width="1.5"/>
+            <path d="M24 40 L24 22" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M24 30 C24 30 18 24 14 22" stroke="var(--accent-emerald)" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <path d="M24 26 C24 26 29 20 34 19" stroke="var(--accent-emerald)" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <circle cx="24" cy="24" r="2" fill="var(--accent-gold)"/>
+          </svg>
+          <div class="logo-text">
+            <span class="logo-title">AGRI<em>HUB</em></span>
+            <span class="logo-sub">Smart Storage Network · v4.2.1</span>
+          </div>
+        </div>
+        <div class="status-beacon">
+          <span class="beacon-dot"></span>
+          <span class="beacon-label">NODE ONLINE</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span class="divider-label">SECURE AUTHENTICATION PORTAL</span>
+      </div>
+
+      <!-- Telemetry Strip -->
+      <div class="telem-strip">
+        <div class="telem-item">
+          <span class="telem-icon">🌡</span>
+          <span class="telem-val" id="stripTemp">—</span>
+          <span class="telem-unit">°C</span>
+        </div>
+        <div class="telem-item">
+          <span class="telem-icon">💧</span>
+          <span class="telem-val" id="stripHumid">—</span>
+          <span class="telem-unit">%RH</span>
+        </div>
+        <div class="telem-item">
+          <span class="telem-icon">🌬</span>
+          <span class="telem-val" id="stripCO2">—</span>
+          <span class="telem-unit">ppm</span>
+        </div>
+        <div class="telem-item">
+          <span class="telem-icon">📡</span>
+          <span class="telem-val" id="stripNodes">12</span>
+          <span class="telem-unit">nodes</span>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form id="loginForm" class="login-form" novalidate>
+        <div class="field-group">
+          <label for="username" class="field-label">OPERATOR ID</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="7" r="3.5" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M3 17c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+            <input type="text" id="username" name="username" placeholder="Enter operator ID" autocomplete="username" spellcheck="false" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="password" class="field-label">ACCESS CODE</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 20 20" fill="none">
+              <rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/>
+              <path d="M7 9V6.5a3 3 0 016 0V9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <circle cx="10" cy="13.5" r="1.2" fill="currentColor"/>
+            </svg>
+            <input type="password" id="password" name="password" placeholder="Enter access code" autocomplete="current-password" />
+            <button type="button" id="togglePwd" class="toggle-pwd" aria-label="Toggle visibility">
+              <svg id="eyeIcon" viewBox="0 0 20 20" fill="none">
+                <path d="M1 10s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z" stroke="currentColor" stroke-width="1.3"/>
+                <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Error message -->
+        <div id="errorMsg" class="error-msg" aria-live="polite"></div>
+
+        <button type="submit" id="loginBtn" class="btn-primary">
+          <span class="btn-text">ESTABLISH CONNECTION</span>
+          <span class="btn-loader" aria-hidden="true"></span>
+          <svg class="btn-icon" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Protocol hint -->
+      <div class="protocol-hint">
+        <div class="hint-header">
+          <svg viewBox="0 0 16 16" fill="none" width="12" height="12">
+            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M8 7v5M8 5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          SYSTEM PROTOCOL CHECK
+        </div>
+        <div class="hint-body">
+          <span>Operator ID: <code>admin</code></span>
+          <span>Access Code: <code>1234</code></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--           SUCCESS VIEW                  -->
+  <!-- ═══════════════════════════════════════ -->
+  <div id="successView" class="view">
+    <div class="card success-card">
+
+      <!-- Success header -->
+      <div class="success-header">
+        <div class="success-icon-wrap">
+          <svg class="success-ring" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="36" stroke="var(--accent-emerald)" stroke-width="1" opacity="0.3" fill="none"/>
+            <circle cx="40" cy="40" r="28" stroke="var(--accent-emerald)" stroke-width="1.5" fill="none" class="ring-animated"/>
+          </svg>
+          <svg class="success-check" viewBox="0 0 40 40" fill="none">
+            <path d="M10 20l8 8 14-14" stroke="var(--accent-emerald)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="success-text-group">
+          <h1 class="success-title">Connection Established</h1>
+          <p class="success-subtitle">AgriHub Secure Node · Authenticated Session Active</p>
+        </div>
+        <div class="session-badge">
+          <span class="badge-dot"></span>
+          <span id="sessionTime">00:00:00</span>
+        </div>
+      </div>
+
+      <div class="divider"><span class="divider-label">LIVE TELEMETRY FEED · UNIT 7 CLIMATE STORAGE</span></div>
+
+      <!-- Telemetry Grid -->
+      <div class="telem-grid">
+
+        <div class="telem-card t-temp">
+          <div class="tc-label">TEMPERATURE</div>
+          <div class="tc-value"><span id="dashTemp">—</span><span class="tc-unit">°C</span></div>
+          <div class="tc-bar-wrap"><div class="tc-bar" id="tempBar"></div></div>
+          <div class="tc-footer">Optimal range: 2°C – 8°C</div>
+        </div>
+
+        <div class="telem-card t-humid">
+          <div class="tc-label">HUMIDITY</div>
+          <div class="tc-value"><span id="dashHumid">—</span><span class="tc-unit">%RH</span></div>
+          <div class="tc-bar-wrap"><div class="tc-bar" id="humidBar"></div></div>
+          <div class="tc-footer">Optimal range: 55% – 75%</div>
+        </div>
+
+        <div class="telem-card t-co2">
+          <div class="tc-label">CO₂ LEVEL</div>
+          <div class="tc-value"><span id="dashCO2">—</span><span class="tc-unit">ppm</span></div>
+          <div class="tc-bar-wrap"><div class="tc-bar" id="co2Bar"></div></div>
+          <div class="tc-footer">Alert threshold: >1000 ppm</div>
+        </div>
+
+        <div class="telem-card t-light">
+          <div class="tc-label">SOIL MOISTURE</div>
+          <div class="tc-value"><span id="dashLight">—</span><span class="tc-unit">%</span></div>
+          <div class="tc-bar-wrap"><div class="tc-bar" id="lightBar"></div></div>
+          <div class="tc-footer">Target range: 60% – 80%</div>
+        </div>
+
+      </div>
+
+      <!-- Node List -->
+      <div class="node-section">
+        <div class="node-header">ACTIVE IOT NODES</div>
+        <div class="node-list" id="nodeList">
+          <!-- JS populated -->
+        </div>
+      </div>
+
+      <!-- Footer actions -->
+      <div class="success-footer">
+        <div class="operator-chip">
+          <svg viewBox="0 0 16 16" fill="none" width="12">
+            <circle cx="8" cy="5.5" r="2.5" stroke="var(--accent-gold)" stroke-width="1.2"/>
+            <path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="var(--accent-gold)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          Operator: <strong>admin</strong>
+        </div>
+        <button id="logoutBtn" class="btn-secondary">DISCONNECT SESSION</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
