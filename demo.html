@@ -1,0 +1,702 @@
+<!-- demo.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suraksha Map — Live Prototype</title>
+  <link rel="stylesheet" href="css/phone.css">
+</head>
+
+<body>
+
+<div class="prototype-app">
+
+  <aside class="side-panel">
+    <div class="app-logo">
+      <span>S</span>
+      <div>
+        <strong>Suraksha</strong>
+        <small>LIVE PROTOTYPE</small>
+      </div>
+    </div>
+
+    <div class="journey-label">YOUR JOURNEY</div>
+
+    <button class="side-nav active" data-screen="home">
+      <span>⌂</span>
+      <b>Overview</b>
+    </button>
+
+    <button class="side-nav" data-screen="map">
+      <span>⌖</span>
+      <b>Safety Map</b>
+    </button>
+
+    <button class="side-nav" data-screen="route">
+      <span>↗</span>
+      <b>Safer Routes</b>
+    </button>
+
+    <button class="side-nav" data-screen="buddy">
+      <span>♧</span>
+      <b>Safety Buddy</b>
+    </button>
+
+    <div class="journey-label">COMMUNITY</div>
+
+    <button class="side-nav" data-screen="report">
+      <span>＋</span>
+      <b>Report Issue</b>
+    </button>
+
+    <button class="side-nav" data-screen="civic">
+      <span>▦</span>
+      <b>Civic Action</b>
+    </button>
+
+    <button class="side-nav" data-screen="safe">
+      <span>◇</span>
+      <b>Safe Stop</b>
+    </button>
+
+    <div class="journey-label">EMERGENCY</div>
+
+    <button class="side-nav sos-link" data-screen="sos">
+      <span>!</span>
+      <b>Discreet SOS</b>
+    </button>
+
+    <div class="demo-note">
+      <span class="live-dot"></span>
+      <div>
+        <strong>Interactive mode</strong>
+        <small>Every state is clickable</small>
+      </div>
+    </div>
+  </aside>
+
+  <main class="phone-area">
+
+    <div class="phone-top">
+      <div>
+        <span class="phone-location">COIMBATORE · TODAY</span>
+        <h1>Good evening, Anu.</h1>
+      </div>
+
+      <div class="phone-time">
+        <span>LIVE</span>
+        <strong id="clock">08:12 PM</strong>
+      </div>
+    </div>
+
+    <div class="screen-wrap">
+
+      <!-- HOME -->
+      <section class="screen active" id="screen-home">
+
+        <div class="welcome-card">
+          <div>
+            <span class="small-label">NEXT JOURNEY</span>
+            <h2>College → Home</h2>
+            <p>Starting in approximately 12 minutes</p>
+          </div>
+          <div class="welcome-shield">✓</div>
+        </div>
+
+        <div class="dashboard-grid">
+
+          <div class="dash-card big-map-card" data-go="map">
+            <div class="dash-card-head">
+              <div>
+                <span class="small-label">CURRENT AREA</span>
+                <h3>Safety around you</h3>
+              </div>
+              <span class="arrow-btn">↗</span>
+            </div>
+
+            <div class="mini-map">
+              <span class="mini-road r1"></span>
+              <span class="mini-road r2"></span>
+              <span class="mini-road r3"></span>
+              <span class="mini-safe safe1"></span>
+              <span class="mini-safe safe2"></span>
+              <span class="mini-risk risk1"></span>
+              <span class="mini-user"></span>
+            </div>
+
+            <div class="mini-map-footer">
+              <span><i class="dot green"></i> Safer</span>
+              <span><i class="dot yellow"></i> Caution</span>
+              <span><i class="dot red"></i> Higher risk</span>
+            </div>
+          </div>
+
+          <div class="dash-card score-dashboard" data-go="map">
+            <span class="small-label">TIME-AWARE SCORE</span>
+            <div class="big-score">
+              <strong id="homeScore">64</strong>
+              <span>/100</span>
+            </div>
+            <p id="homeScoreText">Caution around current route</p>
+
+            <div class="score-bar">
+              <i id="homeScoreBar"></i>
+            </div>
+
+            <span class="score-update">
+              Updates as time changes
+            </span>
+          </div>
+
+          <div class="dash-card action-card" data-go="route">
+            <span class="action-icon">↗</span>
+            <h3>Find a safer route</h3>
+            <p>Compare safety, time and distance.</p>
+            <span class="action-arrow">→</span>
+          </div>
+
+          <div class="dash-card action-card" data-go="safe">
+            <span class="action-icon">◇</span>
+            <h3>Find a safe place</h3>
+            <p>Verified places near your journey.</p>
+            <span class="action-arrow">→</span>
+          </div>
+
+        </div>
+
+        <div class="journey-strip">
+          <div>
+            <span class="small-label">REACH-SAFE TIMER</span>
+            <strong>32:00</strong>
+          </div>
+
+          <div class="timer-progress">
+            <i></i>
+          </div>
+
+          <button data-screen="safe">
+            Safe options
+            <span>→</span>
+          </button>
+        </div>
+
+      </section>
+
+
+      <!-- MAP -->
+      <section class="screen" id="screen-map">
+
+        <div class="screen-heading">
+          <div>
+            <span class="small-label">DYNAMIC SAFETY MAP</span>
+            <h2>Risk changes with time.</h2>
+          </div>
+          <span class="live-pill"><i></i> LIVE</span>
+        </div>
+
+        <div class="time-controller">
+          <div>
+            <span>SELECT TIME</span>
+            <strong id="selectedTime">8:00 PM</strong>
+          </div>
+
+          <input
+            type="range"
+            id="timeSlider"
+            min="0"
+            max="100"
+            value="58">
+
+          <div class="time-points">
+            <span>6 PM</span>
+            <span>7 PM</span>
+            <span>8 PM</span>
+            <span>9 PM</span>
+            <span>10 PM</span>
+          </div>
+        </div>
+
+        <div class="large-map">
+
+          <div class="map-noise"></div>
+
+          <span class="large-road lr1"></span>
+          <span class="large-road lr2"></span>
+          <span class="large-road lr3"></span>
+          <span class="large-road lr4"></span>
+          <span class="large-road lr5"></span>
+
+          <span class="route-glow"></span>
+          <span class="route-line"></span>
+
+          <span class="map-zone zone-safe">SAFER</span>
+          <span class="map-zone zone-caution">CAUTION</span>
+          <span class="map-zone zone-risk">HIGHER RISK</span>
+
+          <div class="map-current-user">
+            <span></span>
+          </div>
+
+          <div class="map-score-floating">
+            <small>SAFETY SCORE</small>
+            <strong id="mapScore">64</strong>
+            <span id="mapScoreLabel">Caution</span>
+          </div>
+
+          <div class="map-location-chip">
+            <span class="location-pulse"></span>
+            You are here
+          </div>
+
+        </div>
+
+        <div class="map-insight">
+          <span class="insight-icon">i</span>
+          <div>
+            <strong id="mapInsightTitle">Risk is increasing</strong>
+            <p id="mapInsightText">
+              The route is becoming less active as evening progresses.
+            </p>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ROUTES -->
+      <section class="screen" id="screen-route">
+
+        <div class="screen-heading">
+          <div>
+            <span class="small-label">ROUTE RECOMMENDATION</span>
+            <h2>Choose a safer way home.</h2>
+          </div>
+        </div>
+
+        <div class="destination-bar">
+          <div>
+            <small>FROM</small>
+            <strong>PSG College</strong>
+          </div>
+          <span>→</span>
+          <div>
+            <small>TO</small>
+            <strong>Home</strong>
+          </div>
+        </div>
+
+        <div class="route-list">
+
+          <button class="route-card recommended active-route">
+            <div class="route-left">
+              <span class="route-badge best">BEST SAFETY</span>
+              <h3>Route B</h3>
+              <p>Well-lit roads · active areas</p>
+            </div>
+
+            <div class="route-right">
+              <strong>32 min</strong>
+              <span>2.5 km</span>
+              <b>82/100</b>
+            </div>
+
+            <span class="route-check">✓</span>
+          </button>
+
+          <button class="route-card">
+            <div class="route-left">
+              <span class="route-badge balanced">BALANCED</span>
+              <h3>Route C</h3>
+              <p>Moderate activity · shorter</p>
+            </div>
+
+            <div class="route-right">
+              <strong>29 min</strong>
+              <span>2.2 km</span>
+              <b>68/100</b>
+            </div>
+          </button>
+
+          <button class="route-card risk-route">
+            <div class="route-left">
+              <span class="route-badge risky">LOWER SAFETY</span>
+              <h3>Route A</h3>
+              <p>Isolated stretch · fewer people</p>
+            </div>
+
+            <div class="route-right">
+              <strong>25 min</strong>
+              <span>2.0 km</span>
+              <b>41/100</b>
+            </div>
+          </button>
+
+        </div>
+
+        <button class="primary-phone-btn route-start">
+          Start safer route
+          <span>→</span>
+        </button>
+
+        <div class="toast" id="routeToast">Safer route selected</div>
+
+      </section>
+
+
+      <!-- BUDDY -->
+      <section class="screen" id="screen-buddy">
+
+        <div class="screen-heading">
+          <div>
+            <span class="small-label">OPT-IN COMMUNITY</span>
+            <h2>You don't have to travel alone.</h2>
+          </div>
+        </div>
+
+        <div class="buddy-search">
+          <div class="search-animation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <strong>Finding compatible journeys...</strong>
+          <p>Matching route + time window anonymously.</p>
+        </div>
+
+        <div class="buddy-match">
+
+          <div class="match-top">
+            <span class="match-status">MATCH FOUND</span>
+            <span class="match-score">94% match</span>
+          </div>
+
+          <div class="anonymous-profile">
+            <div class="profile-avatar">A</div>
+            <div>
+              <strong>Nearby commuter</strong>
+              <p>Same route · leaves in 8 min</p>
+            </div>
+            <span class="verified">✓</span>
+          </div>
+
+          <div class="match-route">
+            <div>
+              <span>START</span>
+              <strong>PSG College</strong>
+            </div>
+            <i></i>
+            <div>
+              <span>DESTINATION</span>
+              <strong>DB Road</strong>
+            </div>
+          </div>
+
+          <div class="buddy-actions">
+            <button class="secondary-phone-btn">Not now</button>
+            <button class="primary-phone-btn buddy-connect">Connect safely →</button>
+          </div>
+
+        </div>
+
+        <div class="privacy-note">
+          <span>◇</span>
+          Your identity stays private until both users choose to connect.
+        </div>
+
+        <div class="toast" id="buddyToast">Buddy request accepted</div>
+
+      </section>
+
+
+      <!-- REPORT -->
+      <section class="screen" id="screen-report">
+
+        <div class="screen-heading">
+          <div>
+            <span class="small-label">COMMUNITY REPORT</span>
+            <h2>Help make this street safer.</h2>
+          </div>
+        </div>
+
+        <div class="report-map">
+          <span class="report-crosshair">+</span>
+          <span class="report-user"></span>
+          <div class="report-location">DB Road</div>
+        </div>
+
+        <div class="report-question">
+          <span>WHAT DID YOU NOTICE?</span>
+          <p>Select one or more.</p>
+        </div>
+
+        <div class="report-chips">
+          <button class="report-chip">Broken streetlight</button>
+          <button class="report-chip">Harassment</button>
+          <button class="report-chip">Empty / isolated</button>
+          <button class="report-chip">Unsafe transport stop</button>
+          <button class="report-chip">Other</button>
+        </div>
+
+        <div class="anonymous-toggle">
+          <div>
+            <strong>Report anonymously</strong>
+            <small>Your identity is not shown publicly.</small>
+          </div>
+          <span class="toggle on"></span>
+        </div>
+
+        <button class="primary-phone-btn report-submit">
+          Submit report
+          <span>→</span>
+        </button>
+
+        <div class="toast" id="reportToast">Anonymous report submitted</div>
+
+      </section>
+
+
+      <!-- CIVIC ACTION -->
+      <section class="screen" id="screen-civic">
+
+        <div class="screen-heading">
+          <div>
+            <span class="small-label">NEW · CIVIC ACTION</span>
+            <h2>Your report can become action.</h2>
+          </div>
+        </div>
+
+        <div class="civic-summary">
+          <div>
+            <span>COMMUNITY REPORTS</span>
+            <strong>07</strong>
+          </div>
+          <div>
+            <span>LOCATION</span>
+            <strong>DB Road</strong>
+          </div>
+          <div>
+            <span>REQUEST</span>
+            <strong>#SM-2048</strong>
+          </div>
+        </div>
+
+        <div class="status-card">
+
+          <div class="status-item complete">
+            <div class="status-dot">✓</div>
+            <div>
+              <strong>Reported</strong>
+              <p>Community members reported the issue.</p>
+            </div>
+            <span>Done</span>
+          </div>
+
+          <div class="status-connector complete"></div>
+
+          <div class="status-item complete">
+            <div class="status-dot">✓</div>
+            <div>
+              <strong>Verified</strong>
+              <p>Repeated reports identified the same issue.</p>
+            </div>
+            <span>Done</span>
+          </div>
+
+          <div class="status-connector active"></div>
+
+          <div class="status-item active">
+            <div class="status-dot pulse">3</div>
+            <div>
+              <strong>Forwarded to civic body</strong>
+              <p>Community request is ready for civic action.</p>
+            </div>
+            <span>Now</span>
+          </div>
+
+          <div class="status-connector"></div>
+
+          <div class="status-item">
+            <div class="status-dot">4</div>
+            <div>
+              <strong>Resolved</strong>
+              <p>Streetlight repaired and community notified.</p>
+            </div>
+            <span>Pending</span>
+          </div>
+
+        </div>
+
+        <div class="civic-message">
+          <span>✦</span>
+          <p>Repeated reports create stronger evidence than one isolated complaint.</p>
+        </div>
+
+      </section>
+
+
+      <!-- SAFE STOP -->
+      <section class="screen" id="screen-safe">
+
+        <div class="screen-heading">
+          <div>
+            <span class="small-label">NEW · SAFE EXIT</span>
+            <h2>Need somewhere safe?</h2>
+          </div>
+
+          <span class="live-pill"><i></i> NEAR YOU</span>
+        </div>
+
+        <div class="safe-hero">
+          <div class="safe-hero-icon">◇</div>
+          <div>
+            <strong>Stay calm. Move toward a verified place.</strong>
+            <p>Safe places are prioritized by distance and availability.</p>
+          </div>
+        </div>
+
+        <div class="safe-place-list">
+
+          <button class="safe-place-card" data-safe="Police Help Point">
+            <span class="safe-place-icon">P</span>
+            <div>
+              <strong>Police Help Point</strong>
+              <p>350 m · Open · 24/7</p>
+            </div>
+            <span class="go-arrow">→</span>
+          </button>
+
+          <button class="safe-place-card" data-safe="City Hospital">
+            <span class="safe-place-icon">H</span>
+            <div>
+              <strong>City Hospital</strong>
+              <p>620 m · Emergency desk</p>
+            </div>
+            <span class="go-arrow">→</span>
+          </button>
+
+          <button class="safe-place-card" data-safe="Verified Fuel Station">
+            <span class="safe-place-icon">S</span>
+            <div>
+              <strong>Verified Fuel Station</strong>
+              <p>780 m · Staffed</p>
+            </div>
+            <span class="go-arrow">→</span>
+          </button>
+
+          <button class="safe-place-card" data-safe="Open Pharmacy">
+            <span class="safe-place-icon">+</span>
+            <div>
+              <strong>Open Pharmacy</strong>
+              <p>1.1 km · Open until 11 PM</p>
+            </div>
+            <span class="go-arrow">→</span>
+          </button>
+
+        </div>
+
+        <div class="safe-route-note">
+          <span>✓</span>
+          <p>Recommended: <strong>Police Help Point</strong> is the closest verified option.</p>
+        </div>
+
+        <div class="toast" id="safeToast">Route started to safe place</div>
+
+      </section>
+
+
+      <!-- SOS -->
+      <section class="screen" id="screen-sos">
+
+        <div class="screen-heading">
+          <div>
+            <span class="small-label">DISCREET RESPONSE</span>
+            <h2>You can ask for help quietly.</h2>
+          </div>
+        </div>
+
+        <div class="sos-intro">
+          <div class="sos-orbit">
+            <span class="orbit-one"></span>
+            <span class="orbit-two"></span>
+            <button class="sos-button" id="sosButton">
+              <strong>SOS</strong>
+              <small>HOLD</small>
+            </button>
+          </div>
+
+          <p>
+            Press and hold for 2 seconds.
+            A deliberate hold reduces accidental triggers.
+          </p>
+        </div>
+
+        <div class="sos-options">
+          <div>
+            <span>CODEWORD</span>
+            <strong>“Mango”</strong>
+            <small>Configured discreet trigger</small>
+          </div>
+
+          <div>
+            <span>REACH-SAFE</span>
+            <strong>18:42</strong>
+            <small>Until automatic escalation</small>
+          </div>
+        </div>
+
+        <div class="emergency-note">
+          <span>!</span>
+          <p>
+            In a real deployment, emergency actions would depend on
+            configured contacts, permissions, network availability and
+            local emergency services.
+          </p>
+        </div>
+
+        <div class="sos-confirm" id="sosConfirm">
+          <div class="confirm-icon">✓</div>
+          <strong>Alert sequence activated</strong>
+          <p>Trusted contact notification would now begin.</p>
+          <button id="cancelSos">Cancel demo</button>
+        </div>
+
+      </section>
+
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-screen="home">
+        <i>⌂</i>
+        <span>Home</span>
+      </button>
+
+      <button class="nav-btn" data-screen="map">
+        <i>⌖</i>
+        <span>Map</span>
+      </button>
+
+      <button class="nav-btn" data-screen="route">
+        <i>↗</i>
+        <span>Routes</span>
+      </button>
+
+      <button class="nav-btn" data-screen="safe">
+        <i>◇</i>
+        <span>Safe</span>
+      </button>
+
+      <button class="nav-btn" data-screen="sos">
+        <i>!</i>
+        <span>SOS</span>
+      </button>
+    </nav>
+
+  </main>
+
+</div>
+
+<script src="js/phone.js"></script>
+</body>
+</html>

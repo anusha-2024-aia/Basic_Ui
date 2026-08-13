@@ -1,226 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AgriHub — Secure Node Access</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeHer — Intelligent Women's Safety Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Ambient canvas background -->
-  <canvas id="bioCanvas"></canvas>
+    <div class="app-header">
+        <h1>SafeHer Journey</h1>
+        <p>Scroll horizontally to view the complete safety ecosystem.</p>
+    </div>
 
-  <!-- Scanline overlay -->
-  <div class="scanlines"></div>
+    <!-- HORIZONTAL SCROLL CONTAINER -->
+    <div class="horizontal-scroll-container">
+        
+        <!-- Connecting Horizontal Line -->
+        <div class="horizontal-line"></div>
 
-  <!-- ═══════════════════════════════════════ -->
-  <!--            LOGIN VIEW                   -->
-  <!-- ═══════════════════════════════════════ -->
-  <div id="loginView" class="view active">
-    <div class="card login-card">
-
-      <!-- Header -->
-      <div class="card-header">
-        <div class="logo-wrap">
-          <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="22" stroke="var(--accent-emerald)" stroke-width="1.5" opacity="0.4"/>
-            <path d="M24 8 C24 8 14 20 14 28 C14 34.627 18.477 40 24 40 C29.523 40 34 34.627 34 28 C34 20 24 8 24 8Z"
-                  fill="none" stroke="var(--accent-emerald)" stroke-width="1.5"/>
-            <path d="M24 40 L24 22" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M24 30 C24 30 18 24 14 22" stroke="var(--accent-emerald)" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
-            <path d="M24 26 C24 26 29 20 34 19" stroke="var(--accent-emerald)" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
-            <circle cx="24" cy="24" r="2" fill="var(--accent-gold)"/>
-          </svg>
-          <div class="logo-text">
-            <span class="logo-title">AGRI<em>HUB</em></span>
-            <span class="logo-sub">Smart Storage Network · v4.2.1</span>
-          </div>
-        </div>
-        <div class="status-beacon">
-          <span class="beacon-dot"></span>
-          <span class="beacon-label">NODE ONLINE</span>
-        </div>
-      </div>
-
-      <!-- Divider -->
-      <div class="divider">
-        <span class="divider-label">SECURE AUTHENTICATION PORTAL</span>
-      </div>
-
-      <!-- Telemetry Strip -->
-      <div class="telem-strip">
-        <div class="telem-item">
-          <span class="telem-icon">🌡</span>
-          <span class="telem-val" id="stripTemp">—</span>
-          <span class="telem-unit">°C</span>
-        </div>
-        <div class="telem-item">
-          <span class="telem-icon">💧</span>
-          <span class="telem-val" id="stripHumid">—</span>
-          <span class="telem-unit">%RH</span>
-        </div>
-        <div class="telem-item">
-          <span class="telem-icon">🌬</span>
-          <span class="telem-val" id="stripCO2">—</span>
-          <span class="telem-unit">ppm</span>
-        </div>
-        <div class="telem-item">
-          <span class="telem-icon">📡</span>
-          <span class="telem-val" id="stripNodes">12</span>
-          <span class="telem-unit">nodes</span>
-        </div>
-      </div>
-
-      <!-- Form -->
-      <form id="loginForm" class="login-form" novalidate>
-        <div class="field-group">
-          <label for="username" class="field-label">OPERATOR ID</label>
-          <div class="input-wrap">
-            <svg class="input-icon" viewBox="0 0 20 20" fill="none">
-              <circle cx="10" cy="7" r="3.5" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M3 17c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-            <input type="text" id="username" name="username" placeholder="Enter operator ID" autocomplete="username" spellcheck="false" />
-          </div>
+        <!-- ============================================== -->
+        <!-- SCREEN 1: SAFETY DASHBOARD                     -->
+        <!-- ============================================== -->
+        <div class="phone-wrapper">
+            <div class="step-label">1. Safety Dashboard</div>
+            <div class="phone-mockup">
+                <div class="phone-hardware">
+                    <div class="notch"><div class="camera"></div><div class="speaker"></div></div>
+                    <div class="phone-screen-container">
+                        <div class="header">
+                            <div>
+                                <h2 class="app-title">SafeHer</h2>
+                                <p class="subtitle">Your journey. Your safety.</p>
+                            </div>
+                            <div class="profile-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+                        </div>
+                        <div class="content-scroll">
+                            <div class="location-bar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <span>Coimbatore, Tamil Nadu</span>
+                            </div>
+                            <div class="safety-card main-card">
+                                <div class="safety-ring-container">
+                                    <svg class="safety-ring" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="45" class="bg"></circle>
+                                        <circle cx="50" cy="50" r="45" class="progress score-good"></circle>
+                                    </svg>
+                                    <div class="score-text"><span class="score">82</span><span class="max">/100</span></div>
+                                </div>
+                                <div class="safety-info">
+                                    <h3>Current Area Safety</h3>
+                                    <p class="status status-safe">Safe right now</p>
+                                    <div class="factors">
+                                        <span class="factor">✓ Well lit</span>
+                                        <span class="factor">✓ Crowded</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="action-buttons mt-4">
+                                <button class="btn btn-primary">Check Route</button>
+                                <button class="btn btn-secondary">Start Safe Journey</button>
+                            </div>
+                            <div class="quick-report mt-3">
+                                <button class="btn btn-outline w-100">Report Issue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="field-group">
-          <label for="password" class="field-label">ACCESS CODE</label>
-          <div class="input-wrap">
-            <svg class="input-icon" viewBox="0 0 20 20" fill="none">
-              <rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/>
-              <path d="M7 9V6.5a3 3 0 016 0V9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              <circle cx="10" cy="13.5" r="1.2" fill="currentColor"/>
-            </svg>
-            <input type="password" id="password" name="password" placeholder="Enter access code" autocomplete="current-password" />
-            <button type="button" id="togglePwd" class="toggle-pwd" aria-label="Toggle visibility">
-              <svg id="eyeIcon" viewBox="0 0 20 20" fill="none">
-                <path d="M1 10s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z" stroke="currentColor" stroke-width="1.3"/>
-                <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.3"/>
-              </svg>
-            </button>
-          </div>
+        <!-- ============================================== -->
+        <!-- SCREEN 2: COMMUNITY REPORT                     -->
+        <!-- ============================================== -->
+        <div class="phone-wrapper">
+            <div class="step-label">2. Report Issue</div>
+            <div class="phone-mockup">
+                <div class="phone-hardware">
+                    <div class="notch"><div class="camera"></div><div class="speaker"></div></div>
+                    <div class="phone-screen-container">
+                        <div class="header small">
+                            <h3>Report a Safety Issue</h3>
+                        </div>
+                        <div class="content-scroll">
+                            <p class="text-muted mb-3">Select the type of issue:</p>
+                            <div class="chips-container" id="report-chips">
+                                <div class="chip" onclick="selectChip(this)">Broken Streetlight</div>
+                                <div class="chip" onclick="selectChip(this)">Unsafe Bus Stop</div>
+                                <div class="chip" onclick="selectChip(this)">Harassment</div>
+                                <div class="chip" onclick="selectChip(this)">Dark Area</div>
+                            </div>
+                            <div class="location-input mt-4">
+                                <label class="text-sm text-muted">Location</label>
+                                <div class="input-field mt-1">Near Peelamedu Bus Stop</div>
+                            </div>
+                            <div class="anon-notice mt-4">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#6366f1" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <span>You remain anonymous.</span>
+                            </div>
+                            <button class="btn btn-primary mt-4 w-100" id="btn-submit-report" onclick="submitReport()">Submit Report</button>
+                        </div>
+                        <!-- Success Overlay (Initially Hidden) -->
+                        <div id="report-success" class="overlay hidden align-bottom">
+                            <div class="overlay-content bottom-sheet slide-up-anim pb-4">
+                                <h3 class="text-success mb-3">✓ Report Added</h3>
+                                <div class="pattern-alert mb-4">
+                                    <strong>Pattern Detected:</strong> 3 people reported this issue.
+                                </div>
+                                <div class="timeline mini">
+                                    <div class="time-node active"><div class="dot"></div><div class="text">Community Report</div></div>
+                                    <div class="time-node active"><div class="dot"></div><div class="text">Pattern Detected</div></div>
+                                    <div class="time-node active"><div class="dot"></div><div class="text">Civic Body Notified</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Error message -->
-        <div id="errorMsg" class="error-msg" aria-live="polite"></div>
-
-        <button type="submit" id="loginBtn" class="btn-primary">
-          <span class="btn-text">ESTABLISH CONNECTION</span>
-          <span class="btn-loader" aria-hidden="true"></span>
-          <svg class="btn-icon" viewBox="0 0 20 20" fill="none">
-            <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </form>
-
-      <!-- Protocol hint -->
-      <div class="protocol-hint">
-        <div class="hint-header">
-          <svg viewBox="0 0 16 16" fill="none" width="12" height="12">
-            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.2"/>
-            <path d="M8 7v5M8 5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-          </svg>
-          SYSTEM PROTOCOL CHECK
+        <!-- ============================================== -->
+        <!-- SCREEN 3: CIVIC IMPACT                         -->
+        <!-- ============================================== -->
+        <div class="phone-wrapper">
+            <div class="step-label">3. Civic Impact</div>
+            <div class="phone-mockup">
+                <div class="phone-hardware">
+                    <div class="notch"><div class="camera"></div><div class="speaker"></div></div>
+                    <div class="phone-screen-container">
+                        <div class="header small">
+                            <h3>Community Impact</h3>
+                        </div>
+                        <div class="content-scroll pt-0">
+                            <div class="impact-card">
+                                <div class="flex-between mb-3">
+                                    <h4 class="m-0">Broken Streetlight</h4>
+                                    <span class="badge warn">5 Reports</span>
+                                </div>
+                                <div class="score-impact mt-3">
+                                    <span class="text-sm text-muted">Area Safety Score Impact</span>
+                                    <div class="flex-row align-center mt-1">
+                                        <span class="score-old">61</span>
+                                        <span class="mx-2">→</span>
+                                        <span class="score-new text-danger">48</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="mt-4 mb-3">Resolution Status</h4>
+                            <div class="timeline full mt-3">
+                                <div class="time-node done">
+                                    <div class="icon">✓</div>
+                                    <div class="content"><h5>Verified</h5><p>Community confirmed</p></div>
+                                </div>
+                                <div class="time-node done">
+                                    <div class="icon">✓</div>
+                                    <div class="content"><h5>Forwarded</h5><p>Sent to Corporation</p></div>
+                                </div>
+                                <div class="time-node pending">
+                                    <div class="icon"></div>
+                                    <div class="content"><h5>Repair Pending</h5><p>Awaiting civic action</p></div>
+                                </div>
+                            </div>
+                            <div class="insight-box mt-4">
+                                <p class="text-sm">Reports directly improve route recommendations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="hint-body">
-          <span>Operator ID: <code>admin</code></span>
-          <span>Access Code: <code>1234</code></span>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 4: TIME-BASED SAFETY MAP                -->
+        <!-- ============================================== -->
+        <div class="phone-wrapper">
+            <div class="step-label">4. Time-Based Map</div>
+            <div class="phone-mockup">
+                <div class="phone-hardware">
+                    <div class="notch"><div class="camera"></div><div class="speaker"></div></div>
+                    <div class="phone-screen-container flex-col">
+                        <div class="header small">
+                            <h3>Safety Around You</h3>
+                        </div>
+                        <div class="map-container flex-1">
+                            <div class="map-bg"></div>
+                            <svg class="map-routes" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <path d="M20,90 Q30,60 50,50 T80,10" fill="none" class="route-line" id="map-route-line" stroke-width="4"/>
+                                <circle cx="50" cy="50" r="15" class="safety-zone" id="zone-1"/>
+                                <circle cx="30" cy="20" r="10" class="safety-zone" id="zone-2"/>
+                                <circle cx="70" cy="80" r="12" class="safety-zone" id="zone-3"/>
+                            </svg>
+                        </div>
+                        <div class="bottom-sheet">
+                            <div class="time-slider-container">
+                                <div class="time-labels"><span>6 PM</span><span>8 PM</span><span>10 PM</span></div>
+                                <input type="range" min="0" max="2" value="0" class="time-slider" id="timeSlider">
+                            </div>
+                            <div class="safety-details" id="time-safety-details">
+                                <div class="score-row mt-3">
+                                    <div class="score-badge good">86</div>
+                                    <div><h4>Busy & Well Lit</h4><p class="text-sm text-muted">Safe right now</p></div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-4 w-100">Plan Route</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 5: ROUTE PLANNER                        -->
+        <!-- ============================================== -->
+        <div class="phone-wrapper">
+            <div class="step-label">5. Safe Route Planner</div>
+            <div class="phone-mockup">
+                <div class="phone-hardware">
+                    <div class="notch"><div class="camera"></div><div class="speaker"></div></div>
+                    <div class="phone-screen-container">
+                        <div class="header small">
+                            <h3>Choose a Safer Route</h3>
+                        </div>
+                        <div class="content-scroll pt-0">
+                            <div class="route-inputs">
+                                <div class="input-group"><div class="dot start"></div><div class="input-field">Gandhipuram</div></div>
+                                <div class="line-connector"></div>
+                                <div class="input-group"><div class="dot end"></div><div class="input-field">Peelamedu</div></div>
+                            </div>
+                            <div class="routes-list mt-3">
+                                <div class="route-card" onclick="selectRoute(this)">
+                                    <div class="flex-between"><h4>FASTEST</h4><span class="fw-600 text-muted">22 min</span></div>
+                                    <span class="badge warn mt-2">Risk: Medium</span>
+                                </div>
+                                <div class="route-card recommended active" onclick="selectRoute(this)">
+                                    <div class="flex-between"><h4>SAFEST <span class="tag">Rec</span></h4><span class="fw-600 text-muted">29 min</span></div>
+                                    <div class="mt-2"><span class="badge good">Risk: Low</span> <span class="badge detail">High Crowd</span></div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-4 w-100">Start Journey</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 6: SAFETY BUDDY                         -->
+        <!-- ============================================== -->
+        <div class="phone-wrapper">
+            <div class="step-label">6. Buddy Match</div>
+            <div class="phone-mockup">
+                <div class="phone-hardware">
+                    <div class="notch"><div class="camera"></div><div class="speaker"></div></div>
+                    <div class="phone-screen-container">
+                        <div class="header small">
+                            <h3>Travel Together</h3>
+                        </div>
+                        <div class="content-scroll flex-col center-content">
+                            <div id="buddy-search">
+                                <div class="radar-animation">
+                                    <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><circle cx="9" cy="7" r="4"></circle><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path></svg>
+                                </div>
+                                <p class="mt-3 text-center text-muted">Someone nearby is travelling your way...</p>
+                                <button class="btn btn-primary mt-4 w-100" onclick="simulateBuddyMatch()">Find Buddy</button>
+                            </div>
+                            
+                            <div id="buddy-found" class="hidden w-100">
+                                <div class="buddy-card slide-up">
+                                    <div class="flex-row gap-2 align-center">
+                                        <div class="buddy-avatar"></div>
+                                        <div>
+                                            <h4>Safety Buddy #A27</h4>
+                                            <p class="text-sm text-muted">94% Route Match</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary mt-4 w-100" onclick="connectBuddy()">Connect Safely</button>
+                                </div>
+                            </div>
+
+                            <div id="buddy-connected" class="hidden w-100 center-content flex-col">
+                                <div class="success-anim">✓</div>
+                                <h3 class="text-center mt-3">Buddy Connected</h3>
+                                <p class="text-center text-muted mt-1">Shared route enabled.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 7: ACTIVE JOURNEY                       -->
+        <!-- ============================================== -->
+        <div class="phone-wrapper">
+            <div class="step-label">7. Active Journey</div>
+            <div class="phone-mockup">
+                <div class="phone-hardware">
+                    <div class="notch"><div class="camera"></div><div class="speaker"></div></div>
+                    <div class="phone-screen-container flex-col">
+                        <div class="header small">
+                            <h3>Journey in Progress</h3>
+                        </div>
+                        <div class="map-container flex-1">
+                            <div class="map-bg"></div>
+                            <svg class="map-routes" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <path d="M20,90 Q30,60 50,50 T80,10" fill="none" class="route-line" stroke-width="4"/>
+                            </svg>
+                            <div class="location-marker moving"><div class="pulse"></div></div>
+                        </div>
+                        <div class="bottom-sheet p-3">
+                            <div class="flex-between border-bottom pb-3">
+                                <div><span class="text-sm text-muted">Reach Safe Timer</span><div class="timer mt-1">24:38</div></div>
+                                <div class="text-right"><span class="text-sm text-muted">Safety</span><br><span class="badge good mt-1">LOW RISK</span></div>
+                            </div>
+                            <div class="flex-row gap-2 mt-4">
+                                <button class="btn btn-primary flex-1">Reached Safely</button>
+                                <button class="btn btn-danger flex-1">Need Help</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- SCREEN 8: SILENT SOS                           -->
+        <!-- ============================================== -->
+        <div class="phone-wrapper">
+            <div class="step-label">8. Silent SOS</div>
+            <div class="phone-mockup">
+                <div class="phone-hardware">
+                    <div class="notch"><div class="camera"></div><div class="speaker"></div></div>
+                    <div class="phone-screen-container bg-dark text-white">
+                        <div class="header small dark">
+                            <h3>Discreet Safety</h3>
+                        </div>
+                        <div class="content-scroll flex-col center-content w-100" id="sos-default">
+                            <p class="text-sm text-white-50 text-center mb-4">Hold button to prevent accidental clicks.</p>
+                            <div class="hold-sos-container">
+                                <div class="hold-ring">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="46" class="bg"></circle>
+                                        <circle cx="50" cy="50" r="46" class="progress" id="sos-progress"></circle>
+                                    </svg>
+                                </div>
+                                <button class="btn-hold-sos" id="btn-hold-sos"><span>HOLD FOR SOS</span></button>
+                            </div>
+                            
+                            <div class="divider text-white-50 w-100 mt-5 mb-4"><span>or</span></div>
+                            
+                            <div class="codeword-section w-100">
+                                <h4>Use Voice Codeword</h4>
+                                <div class="codeword-box mt-2">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path></svg>
+                                    <span>"Where is my blue bag?"</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-  </div>
 
-  <!-- ═══════════════════════════════════════ -->
-  <!--           SUCCESS VIEW                  -->
-  <!-- ═══════════════════════════════════════ -->
-  <div id="successView" class="view">
-    <div class="card success-card">
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden">Notification Message</div>
 
-      <!-- Success header -->
-      <div class="success-header">
-        <div class="success-icon-wrap">
-          <svg class="success-ring" viewBox="0 0 80 80">
-            <circle cx="40" cy="40" r="36" stroke="var(--accent-emerald)" stroke-width="1" opacity="0.3" fill="none"/>
-            <circle cx="40" cy="40" r="28" stroke="var(--accent-emerald)" stroke-width="1.5" fill="none" class="ring-animated"/>
-          </svg>
-          <svg class="success-check" viewBox="0 0 40 40" fill="none">
-            <path d="M10 20l8 8 14-14" stroke="var(--accent-emerald)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="success-text-group">
-          <h1 class="success-title">Connection Established</h1>
-          <p class="success-subtitle">AgriHub Secure Node · Authenticated Session Active</p>
-        </div>
-        <div class="session-badge">
-          <span class="badge-dot"></span>
-          <span id="sessionTime">00:00:00</span>
-        </div>
-      </div>
-
-      <div class="divider"><span class="divider-label">LIVE TELEMETRY FEED · UNIT 7 CLIMATE STORAGE</span></div>
-
-      <!-- Telemetry Grid -->
-      <div class="telem-grid">
-
-        <div class="telem-card t-temp">
-          <div class="tc-label">TEMPERATURE</div>
-          <div class="tc-value"><span id="dashTemp">—</span><span class="tc-unit">°C</span></div>
-          <div class="tc-bar-wrap"><div class="tc-bar" id="tempBar"></div></div>
-          <div class="tc-footer">Optimal range: 2°C – 8°C</div>
-        </div>
-
-        <div class="telem-card t-humid">
-          <div class="tc-label">HUMIDITY</div>
-          <div class="tc-value"><span id="dashHumid">—</span><span class="tc-unit">%RH</span></div>
-          <div class="tc-bar-wrap"><div class="tc-bar" id="humidBar"></div></div>
-          <div class="tc-footer">Optimal range: 55% – 75%</div>
-        </div>
-
-        <div class="telem-card t-co2">
-          <div class="tc-label">CO₂ LEVEL</div>
-          <div class="tc-value"><span id="dashCO2">—</span><span class="tc-unit">ppm</span></div>
-          <div class="tc-bar-wrap"><div class="tc-bar" id="co2Bar"></div></div>
-          <div class="tc-footer">Alert threshold: >1000 ppm</div>
-        </div>
-
-        <div class="telem-card t-light">
-          <div class="tc-label">SOIL MOISTURE</div>
-          <div class="tc-value"><span id="dashLight">—</span><span class="tc-unit">%</span></div>
-          <div class="tc-bar-wrap"><div class="tc-bar" id="lightBar"></div></div>
-          <div class="tc-footer">Target range: 60% – 80%</div>
-        </div>
-
-      </div>
-
-      <!-- Node List -->
-      <div class="node-section">
-        <div class="node-header">ACTIVE IOT NODES</div>
-        <div class="node-list" id="nodeList">
-          <!-- JS populated -->
-        </div>
-      </div>
-
-      <!-- Footer actions -->
-      <div class="success-footer">
-        <div class="operator-chip">
-          <svg viewBox="0 0 16 16" fill="none" width="12">
-            <circle cx="8" cy="5.5" r="2.5" stroke="var(--accent-gold)" stroke-width="1.2"/>
-            <path d="M2 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="var(--accent-gold)" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-          Operator: <strong>admin</strong>
-        </div>
-        <button id="logoutBtn" class="btn-secondary">DISCONNECT SESSION</button>
-      </div>
-
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
